@@ -112,7 +112,12 @@ SCRIPTS & ENQUEUEING
 // loading modernizr and jquery, and reply script 
 function bones_scripts_and_styles() {
   if (!is_admin()) {
-  
+    // ember.js
+    wp_register_script( 'ember-js', get_stylesheet_directory_uri() . '/library/js/libs/ember-1.0.pre.min.js', array(), '', false);
+
+    // handlebars.js
+    wp_register_script( 'handlebars-js', get_stylesheet_directory_uri() . '/library/js/libs/handlebars-1.0.0.beta.6.js', array(), '', false);
+
     // modernizr (without media query polyfill)
     wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
  
@@ -131,6 +136,8 @@ function bones_scripts_and_styles() {
     wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
     
     // enqueue styles and scripts
+    wp_enqueue_script( 'ember-js' );
+    wp_enqueue_script( 'handlebars-js' );
     wp_enqueue_script( 'bones-modernizr' ); 
     wp_enqueue_style( 'bones-stylesheet' ); 
     wp_enqueue_style('bones-ie-only');
