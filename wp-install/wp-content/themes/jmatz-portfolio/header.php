@@ -46,6 +46,19 @@
 					<!-- if you'd like to use the site description you can un-comment it below -->
 					<?php // bloginfo('description'); ?>
 					
+					<script type="text/x-handlebars">
+			    	{{#view Folio.NavBarView}}
+              <ul class="nav">
+                <li class="postCount"><a {{action "showAll" on="click"}}>{{view.itemCount}} Items</a></li>
+                <li class="unreadCount"><a {{action "showUnread" on="click"}}>{{view.unreadCount}} Unread</a></li>
+                <li class="starredCount"><a {{action "showStarred" on="click"}}>{{view.starredCount}} Starred</a></li>
+                <li class="readCount"><a {{action "showRead" on="click"}}>{{view.readCount}} Read</a></li>
+              </ul>
+              <ul class="nav pull-right">
+                <li><a {{action "refresh" on="click"}}>Refresh</a></li>
+              </ul>
+			      {{/view}}
+			    </script>
 					
 					<nav role="navigation">
 						<?php bones_main_nav(); // Adjust using Menus in Wordpress Admin ?>

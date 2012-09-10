@@ -6,7 +6,37 @@
 			
 				    <div id="main" class="eightcol first clearfix" role="main">
 
-					    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+				    	<script type="text/x-handlebars">
+				          {{#each Folio.postsController}}
+				            {{#view Folio.SummaryListView contentBinding="this"}}
+
+				            <article id="post-{{id}}" <?php post_class('clearfix'); ?> role="article">
+						
+									    <header class="article-header">
+										
+										    <h1 class="h2"><a {{action "select" on="click"}} rel="bookmark">{{title}}</a></h1>
+										
+										    <p class="meta"><?php _e('Posted', 'bonestheme'); ?> <time datetime="{{date}}" pubdate>{{formattedDate}}</time> <?php _e('by', 'bonestheme'); ?> <?php the_author_posts_link(); ?> <span class="amp">&</span> <?php _e('filed under', 'bonestheme'); ?> <?php the_category(', '); ?>.</p>
+									
+									    </header> <!-- end article header -->
+								
+									    <section class="post-content clearfix">
+										    {{excerpt}}
+									    </section> <!-- end article section -->
+									
+									    <footer class="article-footer">
+
+			    							<p class="tags"><?php the_tags('<span class="tags-title">Tags:</span> ', ', ', ''); ?></p>
+
+									    </footer> <!-- end article footer -->
+									    
+									    <?php // comments_template(); // uncomment if you want to use them ?>
+								
+								    </article> <!-- end article -->
+				            {{/view}}
+				          {{/each}}
+				      </script>
+					    <?php if (have_posts()) : while (have_posts()) : the_post(); /* ?>
 					
 					    <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article">
 						
@@ -32,7 +62,7 @@
 					
 					    </article> <!-- end article -->
 					
-					    <?php endwhile; ?>	
+					    <?php */ endwhile; ?>	
 					
 					        <?php if (function_exists('bones_page_navi')) { // if experimental feature is active ?>
 						

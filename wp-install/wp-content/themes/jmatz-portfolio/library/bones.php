@@ -113,10 +113,13 @@ SCRIPTS & ENQUEUEING
 function bones_scripts_and_styles() {
   if (!is_admin()) {
     // ember.js
-    wp_register_script( 'ember-js', get_stylesheet_directory_uri() . '/library/js/libs/ember-1.0.pre.min.js', array(), '', false);
+    wp_register_script( 'ember-js', get_stylesheet_directory_uri() . '/library/js/libs/ember-1.0.pre.min.js', array( 'handlebars-js', 'jquery'), '', false);
 
     // handlebars.js
     wp_register_script( 'handlebars-js', get_stylesheet_directory_uri() . '/library/js/libs/handlebars-1.0.0.beta.6.js', array(), '', false);
+
+    // moment.js
+    wp_register_script( 'moment-js', get_stylesheet_directory_uri() . '/library/js/libs/moment-1.5.0.min.js', array(), '', false);
 
     // modernizr (without media query polyfill)
     wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
@@ -146,9 +149,11 @@ function bones_scripts_and_styles() {
     and your site will load faster.
     */
     wp_enqueue_script( 'jquery' ); 
-    wp_enqueue_script( 'bones-js' ); 
-    wp_enqueue_script( 'ember-js' );
     wp_enqueue_script( 'handlebars-js' );
+    wp_enqueue_script( 'bones-js' ); 
+    wp_enqueue_script( 'moment-js' );
+    wp_enqueue_script( 'ember-js' );
+    
     
   }
 }
