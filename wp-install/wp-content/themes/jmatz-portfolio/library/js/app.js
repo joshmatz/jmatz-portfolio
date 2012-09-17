@@ -46,6 +46,7 @@ Folio.GetPostsFromServer = function() {
         post.title_plain = entry.title_plain;
         post.date = new Date(entry.date);
         post.modified = new Date(entry.modified);
+        post.content = entry.content;
         post.excerpt = entry.excerpt;
         post.parent = entry.parent;
         post.category = entry.category;
@@ -261,11 +262,9 @@ Folio.NavBarView = Em.View.extend({
 
 Folio.SummaryListView = Em.View.extend({
   //TODO:
-
+  role: 'article', 
   tagName: 'article',
-
-  classNames: ['well', 'summary'],
-
+  classNames: ['summary', 'clearfix'],
   classNameBindings: ['read', 'starred'],
 
   // Enables/Disables the read CSS class
@@ -286,4 +285,25 @@ Folio.SummaryListView = Em.View.extend({
     var d = this.get('content').get('date');
     return moment(d).format('MMMM Do, YYYY');
   }.property('Folio.postsController.@each.date')
+});
+
+/**************************
+* Helpers
+**************************/
+Handlebars.registerHelper('time', function(property, options) {
+  var value = Ember.Handlebars.getPath(this, property, options);
+  return new Handlebars.SafeString('<time datetime="'+ value + '" pubdate>'+moment(value).format('MMMM Do, YYYY')+'</time>');
+});
+
+Handlebars.registerHelper('listCategories', function(property, options) {
+  var categories = Ember.Handlebars.getPath(this, property, options),
+      value = "";
+
+  for(var count = 0; count < categories.length; count++){
+    value += categories[0].name;
+    if(count !== (categories.length - 1)){
+      value += ", ";
+    }
+  }
+  return new Handlebars.SafeString('<span class="categories">'+value+'</span>');
 });
