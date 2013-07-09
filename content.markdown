@@ -4,11 +4,13 @@
 My current set up is a single page portfolio that lacks some features and content that I'd like to start using.
 
 There are some things I like:
+
 * Responsive
 * Focused content quickly shows visitors who I am
 * Interactive easter eggs (hover over icons and graphs)
 
 There's also things I want to add/improve:
+
 * Design aesthetics (Be more sleek/modern, rather than grungy and blegh)
 * Functionality
 	* Multiple images for portfolio items
